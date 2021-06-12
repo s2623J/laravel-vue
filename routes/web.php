@@ -15,4 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
+    // try {
+    //     DB::connection()->getPDO();
+    //     echo 'Yay, it worked!';
+    // } catch (\Throwable $th) {
+    //     die('Could not connect to the database. Please check your configuration. Error: ' . $th);
+    // }
 });
