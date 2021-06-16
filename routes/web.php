@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController; // Must be added to make Laravel 8 happy
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,10 @@ Route::get('/', function () {
     //     die('Could not connect to the database. Please check your configuration. Error: ' . $th);
     // }
 });
+
+Route::get('/page/about-us', function () {
+    echo 'This is where the about page will be.';
+});
+
+// Route::get('test1', 'TestController@test1'); // Before Laravel 8
+Route::get('test1', [TestController::class, 'test1']);
