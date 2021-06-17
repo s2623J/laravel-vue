@@ -13,17 +13,19 @@ class TestController extends Controller
         // echo 'Test1 method is launched';
 
         // $pages = Page::all();
-        $pages = Page::where('id', 1)->first();
+        $pages = Page::where('id', 2)->first();
 
         // dd($pages); // Same as die/execute & die
 
         // echo 'Hello! ;-)'; // Will not be executed after dd();
 
-        echo $pages->name . ': ' . $pages->description;
+        // echo $pages->name . ': ' . $pages->description;
 
         // foreach ($pages as $page) {
         //     echo($page->name . ' - ' . $page->description);
         //     echo '<br>';
         // }
+
+        return view('test1', ['pages' => $pages]);
     }
 }
