@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController; // Must be added to make Laravel 8 happy
 use App\Http\Controllers\HomeController; // Must be added to make Laravel 8 happy
+use App\Http\Controllers\ContactUsController; // Must be added to make Laravel 8 happy
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,7 @@ use App\Http\Controllers\HomeController; // Must be added to make Laravel 8 happ
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/page/{id}', [HomeController::class, 'page']);
+
+// Route::get('contact-us', [ContactUsController::class, 'index']);
+Route::get('/contact', [ContactUsController::class, 'index']);
+Route::post('/contact/sendMessage', [ContactUsController::class, 'sendMessage']);

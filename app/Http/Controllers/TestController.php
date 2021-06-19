@@ -26,6 +26,6 @@ class TestController extends Controller
         //     echo '<br>';
         // }
 
-        return view('test1', ['pages' => $pages]);
+        return view('website/test1', ['pages' => $pages]);
     }
 }
