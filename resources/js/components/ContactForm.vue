@@ -5,7 +5,7 @@
                 <form method="post" action="/contact-us/sendMsg" class="was-validated">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" >
+                        <input @keyup="buttonText = name" v-model="name" type="text" class="form-control" id="name" placeholder="Enter name" name="name" >
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
@@ -16,6 +16,7 @@
                         <textArea class="form-control" id="msg" placeholder="Enter message" name="msg" ></textArea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <div @click="buttonText = name" class="btn btn-primary">{{ buttonText }}</div>
                 </form>
             </div>
         </div>
@@ -26,7 +27,9 @@
     export default({
         data() {
             return{
-                loaded: false
+                loaded: false,
+                name: '',
+                buttonText: 'Click me to change my text to name text'
             }
         },
         mounted(){

@@ -1869,10 +1869,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      loaded: false
+      loaded: false,
+      name: '',
+      buttonText: 'Click me to change my text to name text'
     };
   },
   mounted: function mounted() {},
@@ -19416,9 +19419,41 @@ var render = function() {
             attrs: { method: "post", action: "/contact-us/sendMsg" }
           },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Name:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "name",
+                  placeholder: "Enter name",
+                  name: "name"
+                },
+                domProps: { value: _vm.name },
+                on: {
+                  keyup: function($event) {
+                    _vm.buttonText = _vm.name
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              })
+            ]),
             _vm._v(" "),
-            _vm._m(1),
+            _vm._m(0),
             _vm._v(" "),
             _c(
               "div",
@@ -19442,6 +19477,19 @@ var render = function() {
               "button",
               { staticClass: "btn btn-primary", attrs: { type: "submit" } },
               [_vm._v("Submit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "btn btn-primary",
+                on: {
+                  click: function($event) {
+                    _vm.buttonText = _vm.name
+                  }
+                }
+              },
+              [_vm._v(_vm._s(_vm.buttonText))]
             )
           ]
         )
@@ -19450,24 +19498,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "name" } }, [_vm._v("Name:")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "name",
-          placeholder: "Enter name",
-          name: "name"
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
