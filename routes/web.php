@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController; // Must be added to make Laravel 8 happy
 use App\Http\Controllers\HomeController; // Must be added to make Laravel 8 happy
+use App\Http\Controllers\TestController; // Must be added to make Laravel 8 happy
 use App\Http\Controllers\ContactUsController; // Must be added to make Laravel 8 happy
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,24 +18,22 @@ use App\Http\Controllers\ContactUsController; // Must be added to make Laravel 8
 // Route::get('/', function () {
 //     return view('welcome');
 
-//     // try {
-//     //     DB::connection()->getPDO();
-//     //     echo 'Yay, it worked!';
-//     // } catch (\Throwable $th) {
-//     //     die('Could not connect to the database. Please check your configuration. Error: ' . $th);
-//     // }
+//     try {
+//         DB::connection()->getPDO();
+//         echo 'Yay, it worked!';
+//     } catch (\Throwable $th) {
+//         die('Could not connect to the database. Please check your configuration. Error: ' . $th);
+//     }
 // });
 
-// Route::get('/page/about-us', function () {
-//     echo 'This is where the about page will be.';
-// });
-
-// Route::get('test1', 'TestController@test1'); // Before Laravel 8
-// Route::get('test1', [TestController::class, 'test1']);
+// Route::get('/page/about-us', [ContactUsController::class, 'sendMessage']);
 
 Route::get('/', [HomeController::class, 'index']);
+
 Route::get('/page/{id}', [HomeController::class, 'page']);
 
-// Route::get('contact-us', [ContactUsController::class, 'index']);
-Route::get('/contact', [ContactUsController::class, 'index']);
-Route::post('/contact/sendMessage', [ContactUsController::class, 'sendMessage']);
+Route::get('/test1', [TestController::class, 'test1']);
+
+Route::get('/contact-us', [ContactUsController::class, 'index']);
+
+Route::post('/contact-us/sendMsg', [ContactUsController::class, 'sendMsg']);

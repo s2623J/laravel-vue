@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,19 +18,22 @@
     <body>
         <!-- A grey horizontal navbar that becomes vertical on small screens -->
         <nav class="navbar navbar-expand-sm bg-light">
+
             <!-- Links -->
             <ul class="navbar-nav">
                 @foreach ($pages as $page)
-                    <!-- echo($page->name . ' - ' . $page->description);
-                    echo '<br>'; -->
                     <li class="nav-item">
                         <a class="nav-link" href="/page/{{ $page->id }}">{{ $page->name }}</a>
                     </li>
                 @endforeach
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact Us</a>
+                    <a class="nav-link" href="/contact-us">Contact Us</a>
                 </li>
             </ul>
         </nav>
+
+        <div>
+            {{ $pageDetail -> description }}
+        </div>
     </body>
 </html>

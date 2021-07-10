@@ -17,31 +17,31 @@ class ContactUsController extends Controller
         return view('website/contact', ['pages' => $pages]);
     }
 
-    public function sendMessage(Request $request) {
+    public function sendMsg(Request $request) {
         $input = $request->All();
         $validator = Validator::make($input, [
             'email' => 'required|email',
-            'name' => 'required|string|max:50',
-            'message' => 'required'
+            'name' => 'required|string',
+            'msg' => 'required'
         ]);
          
         if ($validator->fails()) {
-            return redirect('/contact')
-                        ->withErrors($validator)
-                        ->withInput();
+            return redirect('/contact-us')
+                ->withErrors($validator)
+                ->withInput();
         } else {
             // dd($input);
 
             $pages = Page::All();
             // $pageDetail = Page::where('id', $pageId)->first();
     
-            Mail::send('mail.contactUs', ['nameInput' => $input['name'], 'messageInput' => $input['message']], function($message){
+            Mail::send('mails.contactUs', ['nameInput' => $input['name'], 'messageInput' => $input['msg']], function($message){
                 $message->from('devdavem@yahoo.com', 'Test1');
                 $message->to('devdavem@yahoo.com', 'Test2')
                 ->subject('Laravel Email Test');
             });
             // return view('mail/contactUs', ['nameInput' => $input['name'], 'messageInput' => $input['message']]);  // For Testing
-            return view('website/contact', ['pages' => $pages])->with('successMessage', ['Thank you! Your message has been sent!']);
+            return view('website.contact', ['pages' => $pages])->with('successMessage', ['Thank you! Your message has been sent!']);
         }
     }
 }

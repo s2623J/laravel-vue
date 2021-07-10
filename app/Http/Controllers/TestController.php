@@ -3,29 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Page;
+use DB;
 
 class TestController extends Controller
 {
-    public function test1()
+    public function test1(Type $var = null)
     {
-        // echo 'Test1 method is launched';
+        // echo 'Okay, you tested me.';
 
-        // $pages = Page::all();
-        $pages = Page::where('id', 2)->first();
+        $pages = Page::All();
+        // $pageDetail = Page::where('id', 4)->first(); // Returns object
+        // $pages = Page::where('name', 'About us')->get(); // Returns array - Apparently NOT case sensitive
+        // $pages = DB::table('pages')->whereRaw('BINARY name = "About Us"')->get(); // Returns array - IS case sensitive
+        // dd($pages); // Desciptive var dump
+        // $page = DB::table('pages')->whereRaw('BINARY name = "About Us"')->first();
 
-        // dd($pages); // Same as die/execute & die
-
-        // echo 'Hello! ;-)'; // Will not be executed after dd();
-
-        // echo $pages->name . ': ' . $pages->description;
 
         // foreach ($pages as $page) {
-        //     echo($page->name . ' - ' . $page->description);
-        //     echo '<br>';
+        //     echo "<p>$page->name - $page->description</p>";
         // }
 
-        return view('website/test1', ['pages' => $pages]);
+        return view('website.test1', ['pages' => $pages]); // Use dot notation instead of slashes
     }
 }

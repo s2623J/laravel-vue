@@ -7,20 +7,20 @@ use App\Models\Page;
 
 class HomeController extends Controller
 {
-    public function index() {
-        // echo 'Hello There! ;-)';
-        // return view('home');
-        // $pages = Page::where('id', 1)->first();
+    public function index(Type $var = null)
+    {
         $pages = Page::All();
-        $pageDetail = Page::where('id', 1)->first();
+        $pageDetail = Page::where('id', 1)->first(); // Returns object
 
-        return view('website/home', ['pages' => $pages, 'pageDetail' => $pageDetail]);
+        return view('website.home',['pages' => $pages, 'pageDetail' => $pageDetail]); // Use dot notation instead of slashes
     }
 
-    public function page($pageId) {
+    public function page($id)
+    {
         $pages = Page::All();
-        $pageDetail = Page::where('id', $pageId)->first();
+        $pageDetail = Page::where('id', $id)->first(); // Returns object
 
-        return view('website/home', ['pages' => $pages, 'pageDetail' => $pageDetail]);
+        return view('website.home', 
+            ['pages' => $pages, 'pageDetail' => $pageDetail]); // Use dot notation instead of slashes
     }
 }

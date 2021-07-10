@@ -17,6 +17,8 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->longText('description');
+            // $table->dateTime('created_at', $precision = 0); // Not needed for any migration
+            // $table->dateTime('updated_at', $precision = 0); // Not needed for any migration
             $table->timestamps();
         });
     }
