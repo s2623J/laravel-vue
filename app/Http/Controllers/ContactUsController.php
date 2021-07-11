@@ -22,9 +22,9 @@ class ContactUsController extends Controller
         $validator = Validator::make($input, [
             'email' => 'required|email',
             'name' => 'required|string',
-            'msg' => 'required'
+            'message' => 'required',
         ]);
-         
+        
         if ($validator->fails()) {
             return redirect('/contact-us')
                 ->withErrors($validator)
@@ -35,13 +35,44 @@ class ContactUsController extends Controller
             $pages = Page::All();
             // $pageDetail = Page::where('id', $pageId)->first();
     
-            Mail::send('mails.contactUs', ['nameInput' => $input['name'], 'messageInput' => $input['msg']], function($message){
+            Mail::send('mails.contactUs', ['nameInput' => $input['name'], 'messageInput' => $input['message']], function($message){
                 $message->from('devdavem@yahoo.com', 'Test1');
                 $message->to('devdavem@yahoo.com', 'Test2')
                 ->subject('Laravel Email Test');
             });
             // return view('mail/contactUs', ['nameInput' => $input['name'], 'messageInput' => $input['message']]);  // For Testing
             return view('website.contact', ['pages' => $pages])->with('successMessage', ['Thank you! Your message has been sent!']);
+        }
+    }
+
+    public function sendMsgAjax(Request $request)
+    {
+        $input = $request->all();
+        // dd($input);
+
+        $validator = Validator::make($input, [
+            'email' => 'required|email',
+            'name' => 'required|string',
+            'message' => 'required'
+        ]);
+         
+        if ($validator->fails()) {
+            return redirect('/contact-us')
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $pages = Page::All();
+
+            Mail::send('mails.contactUs', ['nameInput' => $input['name'], 'messageInput' => $input['message']], function($message){
+                $message->from('devdavem@yahoo.com', 'Test1');
+                $message->to('devdavem@yahoo.com', 'Test2')
+                ->subject('Laravel Email Test');
+            });
+            
+            return [
+                'success' => true, 
+                'message' => 'Thank you. We will get back to you as soon as possible.'
+            ];
         }
     }
 }
