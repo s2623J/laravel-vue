@@ -29,6 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact-us">Contact Us</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/specials">Add/Edit/Remove Specials</a>
+                </li>
             </ul>
         </nav>
 

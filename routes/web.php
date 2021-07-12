@@ -1,9 +1,12 @@
 <?php
 
+require __DIR__.'/auth.php';
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController; // Must be added to make Laravel 8 happy
 use App\Http\Controllers\TestController; // Must be added to make Laravel 8 happy
 use App\Http\Controllers\ContactUsController; // Must be added to make Laravel 8 happy
+use App\Http\Controllers\SpecialsController; // Must be added to make Laravel 8 happy
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,16 +29,37 @@ use App\Http\Controllers\ContactUsController; // Must be added to make Laravel 8
 //     }
 // });
 
-// Route::get('/page/about-us', [ContactUsController::class, 'sendMessage']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard'); // Any request for downloads must also pass through "auth
+
+// Route::get(
+//     '/specials',
+//     [SpecialsController::class, 'index']
+// )->middleware(['auth'])->name('specials');
 
 Route::get('/page/{id}', [HomeController::class, 'page']);
 
-Route::get('/test1', [TestController::class, 'test1']);
+// Route::get('/test1', [TestController::class, 'test1']);
 
-Route::get('/contact-us', [ContactUsController::class, 'index']);
+// Route::get('/contact-us', [ContactUsController::class, 'index']);
 
-Route::post('/contact-us/sendMsg', [ContactUsController::class, 'sendMsg']);
+// Route::post('/contact-us/sendMsg', [ContactUsController::class, 'sendMsg']);
 
-Route::post('/contact-us/sendMessage/ajax', [ContactUsController::class, 'sendMsgAjax']);
+// Route::post('/contact-us/sendMessage/ajax', [ContactUsController::class, 'sendMsgAjax']);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Route::group(['middleware' => 'auth'], function() { // Group nav links by wrapping them in 'auth' middlewear
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard'); // Any request for downloads must also pass through "auth
+
+    Route::get('admin/specials', [SpecialsController::class, 'index']
+    )->name('specials');
+});
