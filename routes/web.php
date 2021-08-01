@@ -55,7 +55,8 @@ Route::get('/page/{id}', [HomeController::class, 'page']);
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Route::group(['middleware' => 'auth'], function() { // Group nav links by wrapping them in 'auth' middlewear
+// Group nav links by wrapping them in 'auth' middlewear to force authentication
+Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard'); // Any request for downloads must also pass through "auth
