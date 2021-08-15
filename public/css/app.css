@@ -32112,6 +32112,14 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+table tbody td:nth-child(6) {
+  display: flex;
+}
+
+table tbody td:nth-child(6) a {
+  margin-right: 6px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -188226,4 +188234,3 @@ select {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
-

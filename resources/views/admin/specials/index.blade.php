@@ -6,10 +6,44 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    Get your specials here!
+                    <div class="container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Was</th>
+                                    <th>Now</th>
+                                    <th>Brand</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($specials as $special) 
+                                <tr>
+                                    <td>{{ $special->name }}</td>
+                                    <td>{{ $special->description }}</td>
+                                    <td>${{ $special->was_price }}</td>
+                                    <td>${{ $special->current_price }}</td>
+                                    <td>{{ $special->brand }}</td>
+                                    <td>
+                                        <a href="/admin/specials/{{ $special->id }}/edit" 
+                                            class="btn btn-xs btn-primary">Edit</a>
+                                        <form method="post" action="/admin/specials/{{ $special->id }}">
+                                            @method('post')
+                                            @CSRF
+                                            <button class="btn btn-xs btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <a href="/admin/specials/create" class="btn btn-primary">Add new Special</a>
+                    </div>
                 </div>
             </div>
         </div>

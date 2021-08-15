@@ -63,4 +63,17 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('admin/specials', [SpecialsController::class, 'index']
     )->name('specials');
-});
+
+    Route::get('admin/specials/create', [SpecialsController::class, 'create']
+    )->name('create');
+
+    Route::post('admin/specials/create', [SpecialsController::class, 'store']
+    )->name('store');
+
+    Route::get('admin/specials/{id}/edit', [SpecialsController::class, 'edit']);
+
+    Route::post('admin/specials/{id}', [SpecialsController::class, 'destroy']
+    )->name('destroy');
+
+    Route::get('special/{id}', [HomeController::class, 'specialEntry']);
+  });

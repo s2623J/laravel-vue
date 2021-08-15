@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
+use App\Models\Special;
+use App\Models\Create;
 
 class SpecialsController extends Controller
 {
@@ -13,7 +15,8 @@ class SpecialsController extends Controller
      */
     public function index()
     {
-        return view('admin.specials.index');
+        $specials = Special::All();
+        return view('admin.specials.index', ['specials' => $specials]);
     }
 
     /**
@@ -23,7 +26,8 @@ class SpecialsController extends Controller
      */
     public function create()
     {
-        //
+        $specials = Special::All();
+        return view('admin.specials.create', ['specials' => $specials]);
     }
 
     /**
@@ -34,7 +38,17 @@ class SpecialsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request::All();
+        // dd($input);
+        $special = new Special();
+        $special->name = $input['name'];
+        $special->description = $input['description'];
+        $special->brand = $input['brand'];
+        $special->was_price = $input['was_price'];
+        $special->current_price = $input['current_price'];
+
+        $special->save();
+        return redirect('admin/specials');
     }
 
     /**
@@ -56,7 +70,9 @@ class SpecialsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $special = Special::where('id', $id)->first();
+        // dd($special);
+        return view('admin.specials.edit', ['special' => $special]);
     }
 
     /**
@@ -68,7 +84,18 @@ class SpecialsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request::All();
+        // dd($input);
+        $special = Special::where('id', $id)->first();
+        $special->name = $input['name'];
+        $special->description = $input['description'];
+        $special->brand = $input['brand'];
+        $special->was_price = $input['was_price'];
+        $special->current_price = $input['current_price'];
+
+        // dd($special)->first();
+        $special->save();
+        return redirect('admin/specials');
     }
 
     /**
@@ -79,6 +106,8 @@ class SpecialsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        Special::where('id', $id)->delete();
+        return redirect('admin/specials');
     }
 }
