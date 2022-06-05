@@ -44,7 +44,7 @@
                 e.preventDefault();
                 const self = this;
                 self.formSending = true;
-                axios.post('/contact-us/sendMessage/ajax', {
+                Vue.axios.post('/contact-us/sendMessage/ajax', {
                     name:       self.name,
                     email:      self.email,
                     message:    self.message
@@ -60,6 +60,7 @@
                 })
                 .catch((error) => {
                     alert('Sorry, message failed.');
+                    console.log(error);
                     self.formSending = false;
                 })
             }

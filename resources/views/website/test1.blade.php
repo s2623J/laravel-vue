@@ -21,7 +21,9 @@
         </style>
     </head>
     <body>
-        <p>Name: {{ $page->name }}</p>
-        <p>Description: {{ $page->description }}</p>
+        @foreach ($pages as $page)
+            <p>Name: {{ $page->name }}</p>
+            <p>Description: {{ $page->description }}</p>
+        @endforeach
     </body>
 </html>

@@ -27,7 +27,7 @@
                 </ul>
             </nav>
 
-            <contact-us-form></contact-us-form>
+            <contact-us-form></contact-us-form>  <!-- from website.js -->
 
             <!-- <div class="container">
                 <form method="post" action="/contact-us/sendMsg" class="was-validated">
@@ -58,8 +58,8 @@
                         <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" >
                     </div>
                     <div class="form-group">
-                        <label for="msg">Message:</label>
-                        <textArea class="form-control" id="msg" placeholder="Enter message" name="msg" ></textArea>
+                        <label for="message">Message:</label>
+                        <textArea class="form-control" id="message" placeholder="Enter message" name="message" ></textArea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

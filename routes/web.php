@@ -46,11 +46,11 @@ Route::get('/page/{id}', [HomeController::class, 'page']);
 
 // Route::get('/test1', [TestController::class, 'test1']);
 
-// Route::get('/contact-us', [ContactUsController::class, 'index']);
+Route::get('/contact-us', [ContactUsController::class, 'index']);
 
-// Route::post('/contact-us/sendMsg', [ContactUsController::class, 'sendMsg']);
+Route::post('/contact-us/sendMsg', [ContactUsController::class, 'sendMsg']);
 
-// Route::post('/contact-us/sendMessage/ajax', [ContactUsController::class, 'sendMsgAjax']);
+Route::post('/contact-us/sendMessage/ajax', [ContactUsController::class, 'sendMsgAjax']);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 

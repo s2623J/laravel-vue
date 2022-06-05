@@ -36,6 +36,6 @@ class HomeController extends Controller
     {
         $special = Special::where('id', $id)->first();
         // dd($special);
-        return view('website.special-entry', ['special' => $special]);
+        return view('website.special-entry', ['special' => $special]); // All variables to view in this array
     }
 }

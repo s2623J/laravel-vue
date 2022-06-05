@@ -22,9 +22,10 @@ class ContactUsController extends Controller
         $validator = Validator::make($input, [
             'email' => 'required|email',
             'name' => 'required|string',
-            'message' => 'required',
+            'message' => 'required'
         ]);
-        
+        // dd($input);
+
         if ($validator->fails()) {
             return redirect('/contact-us')
                 ->withErrors($validator)

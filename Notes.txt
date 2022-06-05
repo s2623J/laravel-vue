@@ -1,0 +1,107 @@
+
+    Notes:
+    ------
+
+    Syntax:
+        1.  Double Colon(::) Vs. Arrow(->) 
+            When the left part is an object instance, you use -> Otherwise, you use ::
+        2.  Type a variable by preceeding the variable definition with its object type (ie. Request $request)
+        3.  Print & die (Example: dd($input))
+                Run from within a controller
+                Must use a model (ie. "use App\Models\Page")
+        4.  Anything in a view that begins with "@" - is a directive
+
+    Installation:
+        1.  Execute "composer create-project --prefer-dist laravel/laravel project_namae"
+    
+    Launch:
+        1. Type "php artisan serve" at the prompt
+
+    GitHub:
+        1.  Creating Repo - Do NOT add read.me, .gitignore, or license as useful instructions will follow.
+
+    Other Services:
+        1.  Setup config within the .env file
+        2.  Test connections to servers using routes/web.php, and adding connection scripts to test responses
+
+    Double Colons:
+        1.  That's (generally) for accessing a static method or property in a class. It is called the scope 
+            resolution operator. It is used to access class constants or static properties and methods, either 
+            from outside the class, or within a class method to reference the same or a parent class using 
+            self and parent.
+
+    Routes:
+        1.  Handled through web.php page
+        2.  Placeholder variables can be used in a route path
+        3.  Tie together request methods, web paths, and controllers
+
+    Controllers:
+        1.  Can be auto-created from the prompt using artisan (ie. "php artisan make:controller AboutUsController")
+        2.  Auto-creation can also be used to create and path new controllers/models/views into sub directories
+        3.  Model names must always be singular
+        4.  Adding "--resource" to the end of an auto-gen statement will additionally create stubs in the 
+                newly-created controller (handy with CRUD functionality):
+                (ie. php artisan make:controller SpecialsController --resource)
+    
+    Migrations:
+        1.  Migrations live in the database/migrations folder in a Laravel application. Database migrations do not 
+            live in the src/ directory but in their own database/migrations folder. (think DB schema)
+        2.  Create a migration by using PhpAdmin to create a table. Then enter a cmd prompt like "php artisan 
+            make:model Page -migration". This will generate both a model file, and a php (migrations) file that 
+            can be used to execute a schema and re-create the DB table(s) for deployment, or merely sharing 
+            schema info through source control.
+        3.  Each migration file is named with a corresponding timestamp of when they were created.
+        4.  Execute a migration with a cmd prompt like "php artisan migrate". Add a "-h" to the end to display 
+            available switches and commands. Laravel will also create a special "migrations" table to track the 
+            tables that were added to the DB.
+        5.  Edit table structures by editing migration tables following with: "php artisan migrate:fresh". This 
+            will cause all tables to be dropped from the DB and then re-created anew.
+        6.  Migrations can create an entire DB from scratch
+        7.  Migrations are plural while models are singular 
+        8.  If there is a key length error, add "use Illuminate\Support\Facades\Schema" to AppServiceProvider.php
+        9.  Adding migrations in order to add more fields to a table is a prefered method:
+                (ie. php artisan make:migration add_brand_field_in_specials_table --table-specials)
+                Then add something like this to the new migration:
+                $table->string('brand', 100)
+
+
+    Models:
+        1.  Leverage the Eloquent ORM to work with Models.
+    
+    Views:
+        1.  Use "Blade" for templating purposes
+        2.  Form methods should match router methods (ie. post)
+
+    Templates:
+        1.  Can be quickly created by copying contents of home page, and customizing from there. Also, 
+                Bootstrap4 forms, tables, etc. can be copied from https://www.w3schools.com/
+
+    Middleware:
+        Provides a convenient mechanism for inspecting and filtering HTTP requests entering your 
+            application. For example, Laravel includes a middleware that verifies the user of your 
+            application is authenticated.
+        To create a new middleware, use the make:middleware Artisan command:
+            "php artisan make:middleware EnsureTokenIsValid"
+        This command will place a new EnsureTokenIsValid class within your app/Http/Middleware directory.
+
+    Authentication:
+        Group CRUD operations together in a route group in web.php
+        Laravel's laravel/ui package provides a quick way to scaffold all of the routes and views you 
+            need for authentication using a few simple commands:
+                composer require laravel/ui:^2.4
+                php artisan ui vue --auth
+
+    VueJS:
+        1.  Add with: npm install vue --save
+        2.  Copy & alias both app.js & app.css to "website"
+        3.  Duplicate & add contents of webpack.mix.js to itself & update new section to include "website"
+        4.  Run "npm install laravel-mix@latest --save-dev" at prompt
+        5.  Run "npm run watch" to generate new & needed files
+        6.  Updates and reacts as data changes through Vue files with curly braces
+        7.  v-on:click = @click
+        8.  Directives (ie. v-if) control elemtent behavior
+        9.  vue-axios provides a way for vueJS to do get/post/put requests
+        10. website.js maps blades to Vue components
+
+
+
